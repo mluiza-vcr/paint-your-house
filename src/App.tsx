@@ -1,33 +1,71 @@
+import {
+  Button,
+  theme,
+  Switch,
+  Input,
+  Checkbox,
+  Typography,
+  ConfigProvider,
+} from "antd";
+import { AliasToken } from "antd/es/theme/internal";
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import "./App.css";
+
+const { useToken } = theme;
+
+function ComponentTest({ setCurrentTheme }: any) {
+  const { token } = useToken();
+  return (
+    <div
+      style={{
+        margin: 0,
+        background: token.colorBgContainer,
+        height: "100%",
+      }}
+    >
+      <div>
+        <Switch
+          checkedChildren="🌞"
+          unCheckedChildren="🌙"
+          onChange={(value) => setCurrentTheme(value ? "dark" : "light")}
+        />
+
+        <Typography>TESTE TEXTO</Typography>
+        <Button type="primary">Botão</Button>
+        <Checkbox>Radio button</Checkbox>
+        <Input />
+      </div>
+    </div>
+  );
+}
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [currentTheme, setCurrentTheme] = useState("light");
+
+  const themes: { [key: string]: Partial<AliasToken> } = {
+    light: { colorPrimary: "#19438C", colorPrimaryBg: "#fafafa" },
+    dark: {
+      colorPrimary: "#007dc3",
+      colorBgContainer: "#252525",
+    },
+  };
 
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
+    <ConfigProvider
+      theme={{
+        token: themes[currentTheme],
+        components: {
+          Input: {
+            colorBgContainer: currentTheme === "light" ? "" : "red",
+          },
+        },
+        algorithm:
+          currentTheme === "light"
+            ? theme.defaultAlgorithm
+            : theme.darkAlgorithm,
+      }}
+    >
+      <ComponentTest setCurrentTheme={setCurrentTheme} />
+    </ConfigProvider>
   );
 }
 
