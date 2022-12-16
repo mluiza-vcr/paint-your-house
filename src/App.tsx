@@ -1,6 +1,5 @@
-import { theme, ConfigProvider } from "antd";
+import { theme, ConfigProvider, Layout } from "antd";
 import { AliasToken } from "antd/es/theme/internal";
-
 import { Router } from "./routes/Router";
 import useTheme from "./hooks/useTheme";
 
@@ -10,16 +9,17 @@ function App() {
   const themes: { [key: string]: Partial<AliasToken> } = {
     light: {
       colorPrimary: "#ff66c4",
-      colorBgContainer: "#FFF4E6",
-      colorBgBase: "#FFF4E6",
-      borderRadius: 13,
+      colorBgBase: "#fff4e6",
+      fontSize: 16,
+      borderRadius: 4,
       colorTextBase: "#3a3a3a",
     },
     dark: {
       colorPrimary: "#7ed957",
-      borderRadius: 13,
+      colorBgBase: "#3A3A3A",
+      fontSize: 16,
+      borderRadius: 4,
       colorBgContainer: "#252525",
-      colorBgBase: "#333333",
     },
   };
 
