@@ -14,12 +14,12 @@ export const HeaderStyle = (color: string): CSSProperties => ({
   top: 0,
   zIndex: 1,
   display: "flex",
-  justifyContent: "space-between",
+  justifyContent: "space-around",
   alignItems: "center",
 });
 
 export const ContentStyle = (color: string): CSSProperties => ({
-  padding: "30px",
+  padding: "50px",
   background: color,
 });
 

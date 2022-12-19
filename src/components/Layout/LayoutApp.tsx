@@ -1,4 +1,4 @@
-import { Layout, Switch, theme } from "antd";
+import { Button, Layout, theme } from "antd";
 import useTheme from "../../hooks/useTheme";
 import logoLightMode from "../../assets/images/logo.png";
 import logoDarkMode from "../../assets/images/logo-darkmode.png";
@@ -25,11 +25,30 @@ function LayoutApp({ children }: any): JSX.Element {
           height="100%"
           width="200px"
         />
-        <Switch
-          checkedChildren="🌞"
-          unCheckedChildren="🌙"
-          onChange={(value) => setCurrentTheme(value ? "dark" : "light")}
-        />
+        <nav>
+          <ul
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "10px",
+              marginTop: "20px",
+              width: "180px",
+            }}
+          >
+            <Button type="primary">Home</Button>
+            <Button type="primary">Calcular</Button>
+            <Button
+              type="primary"
+              onClick={() => {
+                currentTheme === "light"
+                  ? setCurrentTheme("dark")
+                  : setCurrentTheme("light");
+              }}
+            >
+              {currentTheme === "light" ? "Tema escuro ☽" : "Tema claro ✺"}
+            </Button>
+          </ul>
+        </nav>
       </Header>
       <Content style={ContentStyle(colorBgBase)}>
         {children}
