@@ -1,40 +1,45 @@
-import { Layout, theme } from "antd";
-import HeaderApp from "../Header";
-import { styled } from "@stitches/react";
+import { Layout, Switch, theme } from "antd";
+import useTheme from "../../hooks/useTheme";
+import logoLightMode from "../../assets/images/logo.png";
+import logoDarkMode from "../../assets/images/logo-darkmode.png";
+import {
+  ContentStyle,
+  CustomButton,
+  FooterStyle,
+  HeaderStyle,
+  LayoutStyle,
+} from "./layout-style";
 
 function LayoutApp({ children }: any): JSX.Element {
+  const { setCurrentTheme, currentTheme } = useTheme();
   const { Header, Footer, Content } = Layout;
   const {
     token: { colorBgBase, colorPrimary },
   } = theme.useToken();
 
-  const CustomButton = styled("button", {
-    backgroundColor: `${colorPrimary}`,
-    color: "white",
-    padding: "10px 15px",
-    "&:hover": {
-      backgroundColor: "lightgray",
-    },
-  });
-
   return (
-    <Layout>
-      <Header
-        className="header"
-        style={{
-          background: colorBgBase,
-          height: "22vh",
-        }}
-      >
-        <HeaderApp />
+    <Layout style={LayoutStyle()}>
+      <Header style={HeaderStyle(colorBgBase)}>
+        <img
+          src={currentTheme === "light" ? logoLightMode : logoDarkMode}
+          height="100%"
+          width="200px"
+        />
+        <Switch
+          checkedChildren="🌞"
+          unCheckedChildren="🌙"
+          onChange={(value) => setCurrentTheme(value ? "dark" : "light")}
+        />
       </Header>
-      <Layout>
-        <Content style={{ height: "100vh", background: colorBgBase }}>
-          {children}
-          <CustomButton>Botão custom</CustomButton>
-        </Content>
-      </Layout>
-      <Footer>Footer</Footer>
+      <Content style={ContentStyle(colorBgBase)}>
+        {children}
+        <CustomButton
+          css={{ backgroundColor: colorPrimary, $$hover: colorBgBase }}
+        />
+      </Content>
+      <Footer style={FooterStyle(colorPrimary)}>
+        Desenvolvido por <a href="https://github.com/mluiza-vcr">mluiza-vcr</a>
+      </Footer>
     </Layout>
   );
 }
