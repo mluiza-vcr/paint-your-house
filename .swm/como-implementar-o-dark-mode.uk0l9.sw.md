@@ -8,7 +8,7 @@ file_blobs:
   src/hooks/useTheme.tsx: 9cc74bc37cf3e9339f1c7b10325b15b35612cadf
   src/main.tsx: ff9b5e4df4ca0b2e22993e6cee390f4ec733301e
   src/App.tsx: f11379f6f13c94386265e6b42a001ebf13674619
-  src/components/Layout/LayoutApp.tsx: 46955c7eea82eac1fce5c1f5a1178ae0dedeb6e9
+  src/components/Layout/LayoutApp.tsx: be5df02528fc9142f0444eb777a1d8fc64809e17
 ---
 
 ## Criando o Provider
@@ -174,7 +174,7 @@ Na função que define o Layout da aplicação, chamamos o hook `useTheme()`[<su
 🟩 45                       : setCurrentTheme("light");
 🟩 46                   }}
 🟩 47                 >
-🟩 48                   {currentTheme === "light" ? "Tema escuro ☽" : "Tema claro ✺"}
+🟩 48                   {currentTheme === "light" ? "Modo escuro ☽" : "Modo claro ✺"}
 🟩 49                 </Button>
 🟩 50               </ul>
 🟩 51             </nav>
