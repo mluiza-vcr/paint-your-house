@@ -45,7 +45,7 @@ function LayoutApp({ children }: any): JSX.Element {
                   : setCurrentTheme("light");
               }}
             >
-              {currentTheme === "light" ? "Tema escuro ☽" : "Tema claro ✺"}
+              {currentTheme === "light" ? "Dark mode ☽" : "Light mode ✺"}
             </Button>
           </ul>
         </nav>
